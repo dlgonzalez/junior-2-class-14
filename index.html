@@ -1,0 +1,1039 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Junior 2: Class 14 - Awesome Animals</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Quicksand:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Quicksand', sans-serif; background-color: #f0fdf4; } 
+        h1, h2, h3, h4, h5 { font-family: 'Fredoka One', cursive; font-weight: normal; }
+        .card-pop { transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out; }
+        .card-pop:hover { transform: translateY(-4px); box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1); }
+        
+        textarea::-webkit-scrollbar { width: 8px; }
+        textarea::-webkit-scrollbar-track { background: #dcfce7; border-radius: 4px; }
+        textarea::-webkit-scrollbar-thumb { background: #22c55e; border-radius: 4px; }
+        textarea::-webkit-scrollbar-thumb:hover { background: #16a34a; }
+
+        /* Custom Dialogue Bubbles */
+        .bubble-left { background: #ffffff; border-radius: 1.5rem 1.5rem 1.5rem 0; padding: 1rem; border: 2px solid #e2e8f0; position: relative; }
+        .bubble-right { background: #dcfce7; border-radius: 1.5rem 1.5rem 0 1.5rem; padding: 1rem; border: 2px solid #86efac; position: relative; }
+        
+        .memory-card { perspective: 1000px; cursor: pointer; aspect-ratio: 1; }
+        .memory-card-inner { position: relative; width: 100%; height: 100%; text-align: center; transition: transform 0.6s; transform-style: preserve-3d; }
+        .memory-card.is-flipped .memory-card-inner { transform: rotateY(180deg); }
+        .memory-card-front, .memory-card-back { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; display: flex; align-items: center; justify-content: center; border-radius: 1rem; border: 4px solid; padding: 0.5rem;}
+        .memory-card-front { background-color: #1e293b; border-color: #334155; color: white; font-size: 2rem; }
+        .memory-card-back { background-color: white; border-color: #e2e8f0; transform: rotateY(180deg); font-weight: bold; color: #1e293b; font-size: 1rem; }
+        .matched .memory-card-back { background-color: #dcfce7; border-color: #86efac; color: #166534; }
+
+        /* Modal Styles */
+        #hot-seat-modal { backdrop-filter: blur(5px); }
+    </style>
+</head>
+<body class="p-4 md:p-8 text-gray-800">
+
+    <!-- HEADER -->
+    <header class="bg-gradient-to-r from-green-800 to-emerald-600 rounded-3xl p-6 md:p-8 text-white shadow-xl mb-8 max-w-5xl mx-auto border-b-8 border-yellow-400 relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-48 h-48 bg-yellow-400 opacity-20 rounded-full blur-3xl -mr-10 -mt-10"></div>
+        <div class="absolute bottom-0 left-0 w-32 h-32 bg-green-900 opacity-30 rounded-full blur-2xl -ml-10 -mb-10"></div>
+        
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6 relative z-10">
+            <div>
+                <h1 class="text-4xl md:text-5xl mb-2 text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-yellow-500 drop-shadow-sm">🐾 Awesome Animals!</h1>
+                <p class="text-xl opacity-95 font-semibold text-green-100">Class 14: Safari Explorers & Animal Detectives</p>
+            </div>
+            <div class="flex flex-wrap gap-2">
+                <span class="bg-white text-green-900 px-4 py-1.5 rounded-full font-bold shadow-sm text-sm">Junior 2</span>
+                <span class="bg-yellow-400 text-green-900 px-4 py-1.5 rounded-full font-bold shadow-sm text-sm border-2 border-yellow-300">Level A2</span>
+                <span class="bg-green-900 text-white px-4 py-1.5 rounded-full font-bold shadow-sm text-sm border-2 border-green-700">Class Time: 2.5h</span>
+            </div>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 bg-white/10 p-5 rounded-2xl backdrop-blur-sm border border-white/20 relative z-10 text-gray-100">
+            <div>
+                <h3 class="text-2xl mb-2 flex items-center gap-2 text-yellow-300">🗺️ Safari Itinerary</h3>
+                <ul class="list-none space-y-1 font-semibold text-lg">
+                    <li>1️⃣ Vocabulary: Animal Body Parts</li>
+                    <li>2️⃣ Reading: Team Talk Dialogue</li>
+                    <li>3️⃣ Grammar: Modals of Deduction</li>
+                    <li>4️⃣ Speaking: Hot Seat Competition</li>
+                    <li>5️⃣ Project: The Drawing Dictation</li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="text-2xl mb-2 flex items-center gap-2 text-yellow-300">🎯 Your Goals</h3>
+                <ul class="list-none space-y-1 font-semibold text-lg">
+                    <li>✓ I can name animal body parts (fur, scales, claws).</li>
+                    <li>✓ I can deduce what an animal is using "must/might/can't".</li>
+                    <li>✓ I can describe a mystery animal for my friends.</li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-5xl mx-auto space-y-10">
+
+        <!-- PART 1: VOCABULARY -->
+        <section class="bg-white rounded-3xl p-6 md:p-8 shadow-md card-pop border-t-8 border-orange-400">
+            <div class="flex items-center gap-3 mb-6">
+                <span class="text-4xl">🦁</span>
+                <h2 class="text-3xl text-orange-600">Part 1: The Vocab Safari</h2>
+            </div>
+            
+            <!-- Vocab Board -->
+            <div class="bg-orange-50 p-6 rounded-2xl border-2 border-orange-200 mb-8">
+                <h4 class="font-bold text-orange-800 mb-4 text-xl">Body Parts Bank</h4>
+                <div class="flex flex-wrap gap-3">
+                    <span class="bg-white px-3 py-1.5 rounded-lg border border-orange-200 shadow-sm font-bold text-gray-700">ears</span>
+                    <span class="bg-white px-3 py-1.5 rounded-lg border border-orange-200 shadow-sm font-bold text-gray-700">teeth</span>
+                    <span class="bg-white px-3 py-1.5 rounded-lg border border-orange-200 shadow-sm font-bold text-gray-700">feathers</span>
+                    <span class="bg-white px-3 py-1.5 rounded-lg border border-orange-200 shadow-sm font-bold text-gray-700">shell</span>
+                    <span class="bg-white px-3 py-1.5 rounded-lg border border-orange-200 shadow-sm font-bold text-gray-700">fur</span>
+                    <span class="bg-white px-3 py-1.5 rounded-lg border border-orange-200 shadow-sm font-bold text-gray-700">wings</span>
+                    <span class="bg-white px-3 py-1.5 rounded-lg border border-orange-200 shadow-sm font-bold text-gray-700">tail</span>
+                    <span class="bg-white px-3 py-1.5 rounded-lg border border-orange-200 shadow-sm font-bold text-gray-700">beak</span>
+                    <span class="bg-white px-3 py-1.5 rounded-lg border border-orange-200 shadow-sm font-bold text-gray-700">tongue</span>
+                    <span class="bg-white px-3 py-1.5 rounded-lg border border-orange-200 shadow-sm font-bold text-gray-700">pouch</span>
+                    <span class="bg-white px-3 py-1.5 rounded-lg border border-orange-200 shadow-sm font-bold text-gray-700">whiskers</span>
+                    <span class="bg-white px-3 py-1.5 rounded-lg border border-orange-200 shadow-sm font-bold text-gray-700">antennae</span>
+                    <span class="bg-white px-3 py-1.5 rounded-lg border border-orange-200 shadow-sm font-bold text-gray-700">spines</span>
+                    <span class="bg-white px-3 py-1.5 rounded-lg border border-orange-200 shadow-sm font-bold text-gray-700">scales</span>
+                    <span class="bg-white px-3 py-1.5 rounded-lg border border-orange-200 shadow-sm font-bold text-gray-700">fin</span>
+                    <span class="bg-white px-3 py-1.5 rounded-lg border border-orange-200 shadow-sm font-bold text-gray-700">paws</span>
+                    <span class="bg-white px-3 py-1.5 rounded-lg border border-orange-200 shadow-sm font-bold text-gray-700">claws</span>
+                    <span class="bg-white px-3 py-1.5 rounded-lg border border-orange-200 shadow-sm font-bold text-gray-700">flippers</span>
+                    <span class="bg-white px-3 py-1.5 rounded-lg border border-orange-200 shadow-sm font-bold text-gray-700">webbed feet</span>
+                </div>
+            </div>
+
+            <!-- Memory Game -->
+            <div class="bg-gray-800 p-6 rounded-2xl border-4 border-gray-700 mb-8">
+                <h4 class="text-2xl font-bold mb-4 text-orange-400 text-center">🧠 Step 1: Memory Match</h4>
+                <div class="grid grid-cols-4 gap-3 md:gap-4 max-w-2xl mx-auto" id="memory-grid"></div>
+                <div class="text-center mt-6">
+                    <p id="memory-message" class="text-xl font-bold text-white h-8">Level <span id="memory-level">1</span> - Moves: <span id="move-count">0</span></p>
+                    <button id="memory-next-btn" onclick="nextMemoryRound()" class="hidden mt-4 bg-orange-500 text-white px-8 py-3 rounded-xl font-bold hover:bg-orange-600 shadow-md mx-auto block">Next Level 🚀</button>
+                    <button onclick="resetMemoryGame()" class="mt-4 text-gray-400 font-bold underline text-sm block mx-auto hover:text-white">Restart Game</button>
+                </div>
+            </div>
+
+            <!-- "Who Am I?" Dynamic Quiz Game -->
+            <div class="bg-indigo-600 p-6 md:p-8 rounded-2xl text-white shadow-xl relative overflow-hidden border-4 border-indigo-800">
+                <h4 class="text-2xl font-bold mb-4 text-yellow-300 text-center">🎯 Step 2: "Who am I?" Quiz</h4>
+                <p class="text-indigo-200 text-center mb-6 font-medium">Earn points for your team! Read the clues and click the right animal.</p>
+                
+                <div class="bg-white max-w-lg mx-auto rounded-2xl p-6 shadow-lg mb-6 text-center text-gray-800">
+                    <p class="text-sm font-bold text-indigo-500 mb-2" id="wai-speaker">Speaker</p>
+                    <p id="wai-clue" class="text-2xl font-bold text-gray-800 mb-6 italic">"Press Start to play!"</p>
+                    <div id="wai-options" class="flex flex-col gap-3 hidden">
+                        <button onclick="checkWAI(0)" class="wai-btn w-full bg-indigo-50 hover:bg-indigo-100 border-2 border-indigo-200 rounded-xl p-3 font-bold text-xl transition-colors">Option 1</button>
+                        <button onclick="checkWAI(1)" class="wai-btn w-full bg-indigo-50 hover:bg-indigo-100 border-2 border-indigo-200 rounded-xl p-3 font-bold text-xl transition-colors">Option 2</button>
+                        <button onclick="checkWAI(2)" class="wai-btn w-full bg-indigo-50 hover:bg-indigo-100 border-2 border-indigo-200 rounded-xl p-3 font-bold text-xl transition-colors">Option 3</button>
+                    </div>
+                </div>
+                <div class="flex justify-center gap-4 items-center">
+                    <button id="wai-start-btn" onclick="startWAI()" class="bg-yellow-400 text-indigo-900 px-8 py-3 rounded-full font-bold shadow-md hover:bg-yellow-300 transition-all text-xl">Start Quiz ▶️</button>
+                    <span id="wai-score" class="hidden bg-indigo-800 text-white px-6 py-3 rounded-full font-bold border border-indigo-700">Score: 0</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- PART 2: DIALOGUE -->
+        <section class="bg-white rounded-3xl p-6 md:p-8 shadow-md border-t-8 border-blue-500 card-pop">
+            <div class="flex items-center gap-3 mb-6">
+                <span class="text-4xl">💬</span>
+                <h2 class="text-3xl text-blue-600">Part 2: Team Talk</h2>
+            </div>
+            
+            <p class="text-gray-700 text-lg mb-6 font-medium">Bobby, Arlo, and Lara are exploring the park. Suddenly, they hear a noise in the bushes! Read the dialogue with your group.</p>
+            
+            <div class="bg-blue-50 p-4 md:p-6 rounded-2xl border border-blue-100 max-h-[400px] overflow-y-auto space-y-4 mb-8">
+                <div class="flex gap-4">
+                    <div class="w-10 h-10 rounded-full bg-blue-500 flex items-center justify-center text-white font-bold text-xl shrink-0">B</div>
+                    <div class="bubble-left">
+                        <p class="font-bold text-blue-800 text-sm mb-1">Bobby</p>
+                        <p>I love this place. There are lots of different animals here. There might be some frogs, snails and bees ...</p>
+                    </div>
+                </div>
+
+                <div class="flex gap-4">
+                    <div class="w-10 h-10 rounded-full bg-orange-500 flex items-center justify-center text-white font-bold text-xl shrink-0">A</div>
+                    <div class="bubble-left">
+                        <p class="font-bold text-orange-800 text-sm mb-1">Arlo</p>
+                        <p>I haven’t seen any animals yet.</p>
+                    </div>
+                </div>
+
+                <div class="flex gap-4">
+                    <div class="w-10 h-10 rounded-full bg-blue-500 flex items-center justify-center text-white font-bold text-xl shrink-0">B</div>
+                    <div class="bubble-left">
+                        <p class="font-bold text-blue-800 text-sm mb-1">Bobby</p>
+                        <p>You have to look carefully and listen.</p>
+                    </div>
+                </div>
+
+                <div class="flex gap-4 flex-row-reverse">
+                    <div class="w-10 h-10 rounded-full bg-green-500 flex items-center justify-center text-white font-bold text-xl shrink-0">L</div>
+                    <div class="bubble-right">
+                        <p class="font-bold text-green-800 text-sm mb-1 text-right">Lara</p>
+                        <p>Hey! There’s something over there!</p>
+                    </div>
+                </div>
+
+                <div class="flex gap-4">
+                    <div class="w-10 h-10 rounded-full bg-blue-500 flex items-center justify-center text-white font-bold text-xl shrink-0">B</div>
+                    <div class="bubble-left">
+                        <p class="font-bold text-blue-800 text-sm mb-1">Bobby</p>
+                        <p>What does it look like? Does it have fur?</p>
+                    </div>
+                </div>
+
+                <div class="flex gap-4 flex-row-reverse">
+                    <div class="w-10 h-10 rounded-full bg-green-500 flex items-center justify-center text-white font-bold text-xl shrink-0">L</div>
+                    <div class="bubble-right">
+                        <p class="font-bold text-green-800 text-sm mb-1 text-right">Lara</p>
+                        <p>It <strong class="text-purple-600">might</strong> have fur. I can’t see it very well.</p>
+                    </div>
+                </div>
+
+                <div class="flex gap-4">
+                    <div class="w-10 h-10 rounded-full bg-orange-500 flex items-center justify-center text-white font-bold text-xl shrink-0">A</div>
+                    <div class="bubble-left border-red-300 bg-red-50">
+                        <p class="font-bold text-orange-800 text-sm mb-1">Arlo</p>
+                        <p>Watch out! It <strong class="text-purple-600">might</strong> be a bear with long claws!</p>
+                    </div>
+                </div>
+
+                <div class="flex gap-4 flex-row-reverse">
+                    <div class="w-10 h-10 rounded-full bg-green-500 flex items-center justify-center text-white font-bold text-xl shrink-0">L</div>
+                    <div class="bubble-right">
+                        <p class="font-bold text-green-800 text-sm mb-1 text-right">Lara</p>
+                        <p>It <strong class="text-red-600">can’t</strong> be a bear, Arlo. Bears don’t live in this country. Duh!</p>
+                    </div>
+                </div>
+
+                <div class="flex gap-4">
+                    <div class="w-10 h-10 rounded-full bg-blue-500 flex items-center justify-center text-white font-bold text-xl shrink-0">B</div>
+                    <div class="bubble-left">
+                        <p class="font-bold text-blue-800 text-sm mb-1">Bobby</p>
+                        <p>It <strong class="text-purple-600">could</strong> be a bird. Listen. I can hear birds.</p>
+                    </div>
+                </div>
+
+                <div class="flex gap-4 flex-row-reverse">
+                    <div class="w-10 h-10 rounded-full bg-green-500 flex items-center justify-center text-white font-bold text-xl shrink-0">L</div>
+                    <div class="bubble-right">
+                        <p class="font-bold text-green-800 text-sm mb-1 text-right">Lara</p>
+                        <p>You <strong class="text-purple-600">may</strong> be right, Bobby.</p>
+                    </div>
+                </div>
+
+                <div class="flex gap-4">
+                    <div class="w-10 h-10 rounded-full bg-orange-500 flex items-center justify-center text-white font-bold text-xl shrink-0">A</div>
+                    <div class="bubble-left">
+                        <p class="font-bold text-orange-800 text-sm mb-1">Arlo</p>
+                        <p>It <strong class="text-red-600">can't</strong> be a bird. It doesn't have wings.</p>
+                    </div>
+                </div>
+
+                <div class="flex gap-4 flex-row-reverse">
+                    <div class="w-10 h-10 rounded-full bg-green-500 flex items-center justify-center text-white font-bold text-xl shrink-0">L</div>
+                    <div class="bubble-right">
+                        <p class="font-bold text-green-800 text-sm mb-1 text-right">Lara</p>
+                        <p>Wait! It’s moving. It’s small and brown.</p>
+                    </div>
+                </div>
+
+                <div class="flex gap-4">
+                    <div class="w-10 h-10 rounded-full bg-orange-500 flex items-center justify-center text-white font-bold text-xl shrink-0">A</div>
+                    <div class="bubble-left">
+                        <p class="font-bold text-orange-800 text-sm mb-1">Arlo</p>
+                        <p>Is it a snake with a long tongue?</p>
+                    </div>
+                </div>
+
+                <div class="flex gap-4 flex-row-reverse">
+                    <div class="w-10 h-10 rounded-full bg-green-500 flex items-center justify-center text-white font-bold text-xl shrink-0">L</div>
+                    <div class="bubble-right">
+                        <p class="font-bold text-green-800 text-sm mb-1 text-right">Lara</p>
+                        <p>No, Arlo! It <strong class="text-red-600">can't</strong> be a snake. It doesn't have scales. Oh! It has spines!</p>
+                    </div>
+                </div>
+
+                <div class="flex gap-4">
+                    <div class="w-10 h-10 rounded-full bg-blue-500 flex items-center justify-center text-white font-bold text-xl shrink-0">B</div>
+                    <div class="bubble-left border-green-300 bg-green-50">
+                        <p class="font-bold text-blue-800 text-sm mb-1">Bobby</p>
+                        <p>Spines? Then it <strong class="text-green-600">must</strong> be a hedgehog.</p>
+                    </div>
+                </div>
+
+                <div class="flex gap-4 flex-row-reverse">
+                    <div class="w-10 h-10 rounded-full bg-green-500 flex items-center justify-center text-white font-bold text-xl shrink-0">L</div>
+                    <div class="bubble-right">
+                        <p class="font-bold text-green-800 text-sm mb-1 text-right">Lara</p>
+                        <p>Yes, it is a hedgehog. It's so cute! It has small paws and whiskers, too. Can I pick it up?</p>
+                    </div>
+                </div>
+
+                <div class="flex gap-4">
+                    <div class="w-10 h-10 rounded-full bg-blue-500 flex items-center justify-center text-white font-bold text-xl shrink-0">B</div>
+                    <div class="bubble-left">
+                        <p class="font-bold text-blue-800 text-sm mb-1">Bobby</p>
+                        <p>No, you shouldn't touch it. It <strong class="text-purple-600">may</strong> be scared. It isn't moving now!</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Gamify Dialogue -->
+            <div class="bg-blue-600 p-6 rounded-2xl text-white shadow-lg border-4 border-blue-800">
+                <h4 class="text-2xl font-bold mb-4 text-center text-yellow-300">🕵️ Dialogue Detective</h4>
+                <p class="text-center mb-6 font-medium">Who said these lines? Click the right character!</p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <!-- Q1 -->
+                    <div class="bg-blue-700 p-4 rounded-xl border border-blue-500 text-center">
+                        <p class="font-bold text-lg mb-3 italic">"It can't be a bear. Bears don't live in this country. Duh!"</p>
+                        <div class="flex justify-center gap-2">
+                            <button onclick="checkDetective(this, false)" class="bg-white text-blue-800 px-4 py-2 rounded-lg font-bold hover:bg-gray-200">Arlo</button>
+                            <button onclick="checkDetective(this, false)" class="bg-white text-blue-800 px-4 py-2 rounded-lg font-bold hover:bg-gray-200">Bobby</button>
+                            <button onclick="checkDetective(this, true)" class="bg-white text-blue-800 px-4 py-2 rounded-lg font-bold hover:bg-gray-200">Lara</button>
+                        </div>
+                    </div>
+                    <!-- Q2 -->
+                    <div class="bg-blue-700 p-4 rounded-xl border border-blue-500 text-center">
+                        <p class="font-bold text-lg mb-3 italic">"It could be a bird. Listen. I can hear birds."</p>
+                        <div class="flex justify-center gap-2">
+                            <button onclick="checkDetective(this, false)" class="bg-white text-blue-800 px-4 py-2 rounded-lg font-bold hover:bg-gray-200">Arlo</button>
+                            <button onclick="checkDetective(this, true)" class="bg-white text-blue-800 px-4 py-2 rounded-lg font-bold hover:bg-gray-200">Bobby</button>
+                            <button onclick="checkDetective(this, false)" class="bg-white text-blue-800 px-4 py-2 rounded-lg font-bold hover:bg-gray-200">Lara</button>
+                        </div>
+                    </div>
+                    <!-- Q3 -->
+                    <div class="bg-blue-700 p-4 rounded-xl border border-blue-500 text-center">
+                        <p class="font-bold text-lg mb-3 italic">"Is it a snake with a long tongue?"</p>
+                        <div class="flex justify-center gap-2">
+                            <button onclick="checkDetective(this, true)" class="bg-white text-blue-800 px-4 py-2 rounded-lg font-bold hover:bg-gray-200">Arlo</button>
+                            <button onclick="checkDetective(this, false)" class="bg-white text-blue-800 px-4 py-2 rounded-lg font-bold hover:bg-gray-200">Bobby</button>
+                            <button onclick="checkDetective(this, false)" class="bg-white text-blue-800 px-4 py-2 rounded-lg font-bold hover:bg-gray-200">Lara</button>
+                        </div>
+                    </div>
+                    <!-- Q4 -->
+                    <div class="bg-blue-700 p-4 rounded-xl border border-blue-500 text-center">
+                        <p class="font-bold text-lg mb-3 italic">"Spines? Then it must be a hedgehog."</p>
+                        <div class="flex justify-center gap-2">
+                            <button onclick="checkDetective(this, false)" class="bg-white text-blue-800 px-4 py-2 rounded-lg font-bold hover:bg-gray-200">Arlo</button>
+                            <button onclick="checkDetective(this, true)" class="bg-white text-blue-800 px-4 py-2 rounded-lg font-bold hover:bg-gray-200">Bobby</button>
+                            <button onclick="checkDetective(this, false)" class="bg-white text-blue-800 px-4 py-2 rounded-lg font-bold hover:bg-gray-200">Lara</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PART 3: GRAMMAR -->
+        <section class="bg-white rounded-3xl p-6 md:p-8 shadow-md border-t-8 border-green-500 card-pop">
+            <div class="flex items-center gap-3 mb-6">
+                <span class="text-4xl">🔍</span>
+                <h2 class="text-3xl text-green-600">Part 3: Modals of Deduction</h2>
+            </div>
+            
+            <p class="text-gray-700 text-lg mb-8 font-medium">When we are <strong>guessing</strong> what an animal is, we use special verbs depending on how sure we are. Look at the Certainty Meter!</p>
+
+            <!-- The Certainty Meter -->
+            <div class="bg-gray-50 p-6 md:p-8 rounded-3xl border-2 border-gray-200 shadow-inner mb-10">
+                <h4 class="text-2xl font-bold text-center mb-8 text-gray-800">The Certainty Meter 📊</h4>
+                
+                <div class="relative w-full max-w-3xl mx-auto mb-16">
+                    <div class="h-6 w-full rounded-full bg-gradient-to-r from-red-500 via-yellow-400 to-green-500 shadow-inner border border-gray-300 relative">
+                        <div class="absolute -top-12 left-0 -translate-x-4 flex flex-col items-center w-24">
+                            <span class="text-3xl mb-1">❌</span>
+                            <span class="bg-red-500 text-white font-bold px-2 py-1 rounded text-sm shadow">0% (NO)</span>
+                        </div>
+                        <div class="absolute -top-12 left-1/2 -translate-x-1/2 flex flex-col items-center w-24">
+                            <span class="text-3xl mb-1">🤔</span>
+                            <span class="bg-yellow-500 text-white font-bold px-2 py-1 rounded text-sm shadow">50% (Maybe)</span>
+                        </div>
+                        <div class="absolute -top-12 right-0 translate-x-4 flex flex-col items-center w-24">
+                            <span class="text-3xl mb-1">✅</span>
+                            <span class="bg-green-500 text-white font-bold px-2 py-1 rounded text-sm shadow">100% (YES)</span>
+                        </div>
+                    </div>
+                    
+                    <div class="flex justify-between mt-6 text-center w-full">
+                        <div class="w-1/3 -ml-8">
+                            <p class="font-bold text-red-600 text-2xl mb-1 border-b-2 border-red-200 pb-1 inline-block">CAN'T</p>
+                            <p class="text-sm font-medium text-gray-600 italic mt-1">"It's impossible."<br>(No wings? It can't be a bird).</p>
+                        </div>
+                        <div class="w-1/3">
+                            <p class="font-bold text-yellow-600 text-2xl mb-1 border-b-2 border-yellow-200 pb-1 inline-block">MIGHT / MAY / COULD</p>
+                            <p class="text-sm font-medium text-gray-600 italic mt-1">"I'm not sure."<br>(It's brown... it could be a bear).</p>
+                        </div>
+                        <div class="w-1/3 -mr-8">
+                            <p class="font-bold text-green-600 text-2xl mb-1 border-b-2 border-green-200 pb-1 inline-block">MUST</p>
+                            <p class="text-sm font-medium text-gray-600 italic mt-1">"I am 100% sure."<br>(It has spines! It must be a hedgehog).</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Grammar Practice -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                <!-- Dropdowns -->
+                <div class="bg-white p-6 rounded-2xl border-2 border-gray-200 shadow-sm">
+                    <h4 class="text-xl font-bold text-green-700 mb-4">Step 1: Choose the correct modal</h4>
+                    <div class="space-y-4">
+                        <div class="bg-gray-50 p-3 rounded-lg border">
+                            <p class="text-sm text-gray-500 mb-1">Clue: It has webbed feet and a beak.</p>
+                            <div class="flex items-center gap-2">
+                                <span>It</span>
+                                <select onchange="checkBasic(this, 'must')" class="border rounded p-1 font-bold outline-none"><option value="">?</option><option value="must">must</option><option value="can't">can't</option></select>
+                                <span>be a duck.</span><span class="feedback-icon hidden"></span>
+                            </div>
+                        </div>
+                        <div class="bg-gray-50 p-3 rounded-lg border">
+                            <p class="text-sm text-gray-500 mb-1">Clue: It doesn't have fur or legs.</p>
+                            <div class="flex items-center gap-2">
+                                <span>It</span>
+                                <select onchange="checkBasic(this, 'cant')" class="border rounded p-1 font-bold outline-none"><option value="">?</option><option value="might">might</option><option value="cant">can't</option></select>
+                                <span>be a bear.</span><span class="feedback-icon hidden"></span>
+                            </div>
+                        </div>
+                        <div class="bg-gray-50 p-3 rounded-lg border">
+                            <p class="text-sm text-gray-500 mb-1">Clue: It's flying, but it's very dark. I can't see.</p>
+                            <div class="flex items-center gap-2">
+                                <span>It</span>
+                                <select onchange="checkBasic(this, 'could')" class="border rounded p-1 font-bold outline-none"><option value="">?</option><option value="must">must</option><option value="could">could</option></select>
+                                <span>be a bat or a bird.</span><span class="feedback-icon hidden"></span>
+                            </div>
+                        </div>
+                        <div class="bg-gray-50 p-3 rounded-lg border">
+                            <p class="text-sm text-gray-500 mb-1">Clue: It is covered in fur and it's roaring.</p>
+                            <div class="flex items-center gap-2">
+                                <span>It</span>
+                                <select onchange="checkBasic(this, 'must')" class="border rounded p-1 font-bold outline-none"><option value="">?</option><option value="must">must</option><option value="can't">can't</option></select>
+                                <span>be a lion.</span><span class="feedback-icon hidden"></span>
+                            </div>
+                        </div>
+                        <div class="bg-gray-50 p-3 rounded-lg border">
+                            <p class="text-sm text-gray-500 mb-1">Clue: It isn't moving. (We don't know why).</p>
+                            <div class="flex items-center gap-2">
+                                <span>It</span>
+                                <select onchange="checkBasic(this, 'may')" class="border rounded p-1 font-bold outline-none"><option value="">?</option><option value="may">may</option><option value="can't">can't</option></select>
+                                <span>be scared.</span><span class="feedback-icon hidden"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right or Wrong -->
+                <div class="bg-white p-6 rounded-2xl border-2 border-gray-200 shadow-sm">
+                    <h4 class="text-xl font-bold text-green-700 mb-4">Step 2: Right or Wrong?</h4>
+                    <div class="space-y-4">
+                        <div class="bg-gray-50 p-3 rounded-lg border">
+                            <span class="font-medium text-gray-800 block mb-2">"It has scales and swims. It <strong>can't</strong> be a fish."</span>
+                            <div class="flex gap-2">
+                                <button onclick="checkRW(this, false)" class="px-4 py-1.5 bg-white border border-gray-300 rounded font-bold hover:bg-gray-100">Right</button>
+                                <button onclick="checkRW(this, true)" class="px-4 py-1.5 bg-white border border-gray-300 rounded font-bold hover:bg-gray-100">Wrong</button>
+                            </div>
+                        </div>
+                        <div class="bg-gray-50 p-3 rounded-lg border">
+                            <span class="font-medium text-gray-800 block mb-2">"It's very tall and has a long neck. It <strong>must</strong> be a giraffe."</span>
+                            <div class="flex gap-2">
+                                <button onclick="checkRW(this, true)" class="px-4 py-1.5 bg-white border border-gray-300 rounded font-bold hover:bg-gray-100">Right</button>
+                                <button onclick="checkRW(this, false)" class="px-4 py-1.5 bg-white border border-gray-300 rounded font-bold hover:bg-gray-100">Wrong</button>
+                            </div>
+                        </div>
+                        <div class="bg-gray-50 p-3 rounded-lg border">
+                            <span class="font-medium text-gray-800 block mb-2">"It has 8 legs. It <strong>might</strong> be a spider."</span>
+                            <div class="flex gap-2">
+                                <button onclick="checkRW(this, true)" class="px-4 py-1.5 bg-white border border-gray-300 rounded font-bold hover:bg-gray-100">Right</button>
+                                <button onclick="checkRW(this, false)" class="px-4 py-1.5 bg-white border border-gray-300 rounded font-bold hover:bg-gray-100">Wrong</button>
+                            </div>
+                        </div>
+                        <div class="bg-gray-50 p-3 rounded-lg border">
+                            <span class="font-medium text-gray-800 block mb-2">"It doesn't have wings. It <strong>must</strong> be a bird."</span>
+                            <div class="flex gap-2">
+                                <button onclick="checkRW(this, false)" class="px-4 py-1.5 bg-white border border-gray-300 rounded font-bold hover:bg-gray-100">Right</button>
+                                <button onclick="checkRW(this, true)" class="px-4 py-1.5 bg-white border border-gray-300 rounded font-bold hover:bg-gray-100">Wrong</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mystery Box Game -->
+            <div class="bg-gradient-to-r from-gray-800 to-gray-900 p-8 rounded-3xl text-center shadow-2xl relative border-4 border-gray-700">
+                <h4 class="text-white text-2xl font-bold mb-2">📦 Step 3: What's in the Box?</h4>
+                <p class="text-gray-300 mb-6 font-medium">Read the clue and guess the animal using MUST or CAN'T.</p>
+                
+                <div class="bg-white max-w-lg mx-auto rounded-2xl p-6 shadow-lg mb-6">
+                    <p id="box-clue" class="text-xl font-bold text-gray-800 mb-4">"It has feathers, wings, and a beak."</p>
+                    <div class="flex flex-col gap-3">
+                        <button onclick="checkBox(this, true)" class="box-btn w-full bg-gray-100 hover:bg-blue-50 border-2 border-gray-200 rounded-xl p-3 font-bold text-lg text-left transition-colors">A) It must be a bird.</button>
+                        <button onclick="checkBox(this, false)" class="box-btn w-full bg-gray-100 hover:bg-blue-50 border-2 border-gray-200 rounded-xl p-3 font-bold text-lg text-left transition-colors">B) It could be a dog.</button>
+                        <button onclick="checkBox(this, false)" class="box-btn w-full bg-gray-100 hover:bg-blue-50 border-2 border-gray-200 rounded-xl p-3 font-bold text-lg text-left transition-colors">C) It can't be a bird.</button>
+                    </div>
+                </div>
+                <div class="flex justify-center gap-4">
+                    <button onclick="nextBoxClue()" class="bg-blue-500 text-white px-8 py-3 rounded-full font-bold shadow-md hover:bg-blue-600 transition-all">Next Animal ⏭️</button>
+                    <span id="box-score" class="bg-gray-700 text-white px-6 py-3 rounded-full font-bold border border-gray-600">Score: 0/6</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- PART 4: SPEAKING (HOT SEAT) -->
+        <section class="bg-white rounded-3xl p-6 md:p-8 shadow-md border-t-8 border-teal-500 card-pop">
+            <div class="flex items-center gap-3 mb-6">
+                <span class="text-4xl">🪑</span>
+                <h2 class="text-3xl text-teal-600">Part 4: The Hot Seat Competition</h2>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                <div class="bg-teal-50 p-6 rounded-2xl border border-teal-200">
+                    <h4 class="text-2xl font-bold text-teal-800 mb-4 flex items-center gap-2"><span>📜</span> Rules & Demo</h4>
+                    <ol class="list-decimal list-inside space-y-3 text-teal-900 font-medium text-lg">
+                        <li>One student (The Guesser) sits in a chair facing the class (back to the screen).</li>
+                        <li>The teacher clicks a card to reveal a secret animal on the screen.</li>
+                        <li>The class shouts clues about the animal's body parts.</li>
+                        <li>The Guesser uses <strong class="text-green-700">Must</strong> or <strong class="text-red-700">Can't</strong> to win a point for their team!</li>
+                    </ol>
+                    <div class="mt-4 p-4 bg-white rounded-xl border border-teal-100 shadow-sm italic text-gray-600">
+                        <strong>Class:</strong> "It has scales and sharp teeth! It swims fast!"<br>
+                        <strong>Guesser:</strong> "It can't be a bird... It must be a shark!"
+                    </div>
+                </div>
+
+                <div class="bg-gray-800 p-6 rounded-2xl border-4 border-gray-700 text-white shadow-xl">
+                    <h4 class="text-xl font-bold text-yellow-300 mb-4">💬 Cheat Sheet for the Class</h4>
+                    <ul class="space-y-3 font-medium text-lg">
+                        <li>👉 "It has <span class="text-orange-300 underline">fur / scales / feathers</span>."</li>
+                        <li>👉 "It doesn't have <span class="text-orange-300 underline">wings / paws</span>."</li>
+                        <li>👉 "It can <span class="text-orange-300 underline">fly / swim / jump</span>."</li>
+                        <li>👉 "It lives in <span class="text-orange-300 underline">the jungle / the water</span>."</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <h4 class="text-2xl font-bold text-center text-teal-700 mb-6">Choose a Card!</h4>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div onclick="openHotSeat('Shark', '🦈', ['Has fins & scales', 'Very sharp teeth', 'Lives in the ocean'])" class="bg-gray-100 p-6 rounded-2xl text-center border-4 border-dashed border-gray-300 cursor-pointer hover:border-teal-500 hover:bg-teal-50 transition-all shadow-sm">
+                    <span class="text-5xl mb-2 block">🙈</span><p class="font-bold text-gray-500">CARD 1</p>
+                </div>
+                <div onclick="openHotSeat('Kangaroo', '🦘', ['Has a pouch', 'Has fur & long tail', 'Jumps very high'])" class="bg-gray-100 p-6 rounded-2xl text-center border-4 border-dashed border-gray-300 cursor-pointer hover:border-teal-500 hover:bg-teal-50 transition-all shadow-sm">
+                    <span class="text-5xl mb-2 block">🙈</span><p class="font-bold text-gray-500">CARD 2</p>
+                </div>
+                <div onclick="openHotSeat('Tortoise', '🐢', ['Has a hard shell', 'Four short legs', 'Walks very slowly'])" class="bg-gray-100 p-6 rounded-2xl text-center border-4 border-dashed border-gray-300 cursor-pointer hover:border-teal-500 hover:bg-teal-50 transition-all shadow-sm">
+                    <span class="text-5xl mb-2 block">🙈</span><p class="font-bold text-gray-500">CARD 3</p>
+                </div>
+                <div onclick="openHotSeat('Hedgehog', '🦔', ['Has sharp spines', 'Small paws & whiskers', 'Rolls into a ball'])" class="bg-gray-100 p-6 rounded-2xl text-center border-4 border-dashed border-gray-300 cursor-pointer hover:border-teal-500 hover:bg-teal-50 transition-all shadow-sm">
+                    <span class="text-5xl mb-2 block">🙈</span><p class="font-bold text-gray-500">CARD 4</p>
+                </div>
+                <div onclick="openHotSeat('Bee', '🐝', ['Has antennae & wings', 'Six small legs', 'Makes honey'])" class="bg-gray-100 p-6 rounded-2xl text-center border-4 border-dashed border-gray-300 cursor-pointer hover:border-teal-500 hover:bg-teal-50 transition-all shadow-sm">
+                    <span class="text-5xl mb-2 block">🙈</span><p class="font-bold text-gray-500">CARD 5</p>
+                </div>
+                <div onclick="openHotSeat('Duck', '🦆', ['Has webbed feet', 'Has a beak & feathers', 'Swims in the park'])" class="bg-gray-100 p-6 rounded-2xl text-center border-4 border-dashed border-gray-300 cursor-pointer hover:border-teal-500 hover:bg-teal-50 transition-all shadow-sm">
+                    <span class="text-5xl mb-2 block">🙈</span><p class="font-bold text-gray-500">CARD 6</p>
+                </div>
+                <div onclick="openHotSeat('Koala', '🐨', ['Grey fur & big ears', 'Climbs trees', 'Sleeps a lot'])" class="bg-gray-100 p-6 rounded-2xl text-center border-4 border-dashed border-gray-300 cursor-pointer hover:border-teal-500 hover:bg-teal-50 transition-all shadow-sm">
+                    <span class="text-5xl mb-2 block">🙈</span><p class="font-bold text-gray-500">CARD 7</p>
+                </div>
+                <div onclick="openHotSeat('Lion', '🦁', ['Big claws & teeth', 'Golden fur', 'King of the jungle'])" class="bg-gray-100 p-6 rounded-2xl text-center border-4 border-dashed border-gray-300 cursor-pointer hover:border-teal-500 hover:bg-teal-50 transition-all shadow-sm">
+                    <span class="text-5xl mb-2 block">🙈</span><p class="font-bold text-gray-500">CARD 8</p>
+                </div>
+                <!-- Extra Hot Seat Cards -->
+                <div onclick="openHotSeat('Crocodile', '🐊', ['Has green scales', 'Big mouth & sharp teeth', 'Lives in rivers'])" class="bg-gray-100 p-6 rounded-2xl text-center border-4 border-dashed border-gray-300 cursor-pointer hover:border-teal-500 hover:bg-teal-50 transition-all shadow-sm">
+                    <span class="text-5xl mb-2 block">🙈</span><p class="font-bold text-gray-500">CARD 9</p>
+                </div>
+                <div onclick="openHotSeat('Elephant', '🐘', ['Very big ears', 'Has a long trunk', 'Grey skin, no fur'])" class="bg-gray-100 p-6 rounded-2xl text-center border-4 border-dashed border-gray-300 cursor-pointer hover:border-teal-500 hover:bg-teal-50 transition-all shadow-sm">
+                    <span class="text-5xl mb-2 block">🙈</span><p class="font-bold text-gray-500">CARD 10</p>
+                </div>
+                <div onclick="openHotSeat('Penguin', '🐧', ['Has wings but cannot fly', 'Black & white feathers', 'Swims in cold water'])" class="bg-gray-100 p-6 rounded-2xl text-center border-4 border-dashed border-gray-300 cursor-pointer hover:border-teal-500 hover:bg-teal-50 transition-all shadow-sm">
+                    <span class="text-5xl mb-2 block">🙈</span><p class="font-bold text-gray-500">CARD 11</p>
+                </div>
+                <div onclick="openHotSeat('Spider', '🕷️', ['Has eight legs', 'Makes a web', 'Very small, lots of eyes'])" class="bg-gray-100 p-6 rounded-2xl text-center border-4 border-dashed border-gray-300 cursor-pointer hover:border-teal-500 hover:bg-teal-50 transition-all shadow-sm">
+                    <span class="text-5xl mb-2 block">🙈</span><p class="font-bold text-gray-500">CARD 12</p>
+                </div>
+                <div onclick="openHotSeat('Monkey', '🐒', ['Has a long tail', 'Climbs trees', 'Eats bananas'])" class="bg-gray-100 p-6 rounded-2xl text-center border-4 border-dashed border-gray-300 cursor-pointer hover:border-teal-500 hover:bg-teal-50 transition-all shadow-sm">
+                    <span class="text-5xl mb-2 block">🙈</span><p class="font-bold text-gray-500">CARD 13</p>
+                </div>
+                <div onclick="openHotSeat('Snake', '🐍', ['Has scales but no legs', 'Has a long tongue', 'Hisses'])" class="bg-gray-100 p-6 rounded-2xl text-center border-4 border-dashed border-gray-300 cursor-pointer hover:border-teal-500 hover:bg-teal-50 transition-all shadow-sm">
+                    <span class="text-5xl mb-2 block">🙈</span><p class="font-bold text-gray-500">CARD 14</p>
+                </div>
+                <div onclick="openHotSeat('Eagle', '🦅', ['Has feathers & big wings', 'Flies very high', 'Has a sharp beak'])" class="bg-gray-100 p-6 rounded-2xl text-center border-4 border-dashed border-gray-300 cursor-pointer hover:border-teal-500 hover:bg-teal-50 transition-all shadow-sm">
+                    <span class="text-5xl mb-2 block">🙈</span><p class="font-bold text-gray-500">CARD 15</p>
+                </div>
+                <div onclick="openHotSeat('Dolphin', '🐬', ['Has flippers and a fin', 'Very smart', 'Jumps out of the ocean'])" class="bg-gray-100 p-6 rounded-2xl text-center border-4 border-dashed border-gray-300 cursor-pointer hover:border-teal-500 hover:bg-teal-50 transition-all shadow-sm">
+                    <span class="text-5xl mb-2 block">🙈</span><p class="font-bold text-gray-500">CARD 16</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- PART 5: PROJECT -->
+        <section class="bg-gradient-to-br from-purple-900 to-indigo-900 rounded-3xl p-6 md:p-10 text-white shadow-xl relative overflow-hidden">
+            <div class="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full blur-3xl"></div>
+            
+            <div class="relative z-10">
+                <div class="flex items-center gap-3 mb-6">
+                    <span class="text-4xl">🧬</span>
+                    <h2 class="text-3xl font-bold">Part 5: Create a Creature & Dictation</h2>
+                </div>
+                
+                <p class="text-lg text-purple-100 font-medium mb-6">Invent a totally new animal! Follow the 3 steps below to build your creature sentence by sentence. Do not write the name of your animal!</p>
+
+                <!-- Step-by-Step Builder -->
+                <div class="bg-white/10 p-6 md:p-8 rounded-3xl border border-white/20 mb-8 backdrop-blur-sm">
+                    <h3 class="text-2xl font-bold text-yellow-300 mb-6">🛠️ Step-by-Step Monster Builder</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <!-- Step 1 -->
+                        <div class="bg-white text-gray-800 p-5 rounded-2xl shadow-lg border-b-4 border-purple-500">
+                            <h4 class="font-bold text-purple-700 text-xl mb-2 flex items-center gap-2"><span class="bg-purple-100 p-1.5 rounded-lg text-lg">1</span> Body Parts</h4>
+                            <p class="text-sm font-medium text-gray-600 mb-4 border-b pb-3">What does it look like? Choose 3+ parts from the vocab list.</p>
+                            <div class="bg-purple-50 p-4 rounded-xl border border-purple-100">
+                                <p class="text-sm font-bold text-purple-800 mb-2">Use these phrases:</p>
+                                <ul class="text-[15px] space-y-2 font-semibold text-purple-600">
+                                    <li>👉 "My animal has <span class="bg-white px-1 rounded border border-purple-200">scales</span> and <span class="bg-white px-1 rounded border border-purple-200">claws</span>."</li>
+                                    <li>👉 "It is <span class="bg-white px-1 rounded border border-purple-200">green</span> and <span class="bg-white px-1 rounded border border-purple-200">very big</span>."</li>
+                                    <li>👉 "It doesn't have <span class="bg-white px-1 rounded border border-purple-200">wings</span>."</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- Step 2 -->
+                        <div class="bg-white text-gray-800 p-5 rounded-2xl shadow-lg border-b-4 border-blue-500">
+                            <h4 class="font-bold text-blue-700 text-xl mb-2 flex items-center gap-2"><span class="bg-blue-100 p-1.5 rounded-lg text-lg">2</span> Abilities</h4>
+                            <p class="text-sm font-medium text-gray-600 mb-4 border-b pb-3">What can it do? Where does it live?</p>
+                            <div class="bg-blue-50 p-4 rounded-xl border border-blue-100">
+                                <p class="text-sm font-bold text-blue-800 mb-2">Use these phrases:</p>
+                                <ul class="text-[15px] space-y-2 font-semibold text-blue-600">
+                                    <li>👉 "It can <span class="bg-white px-1 rounded border border-blue-200">fly very high</span>."</li>
+                                    <li>👉 "It eats <span class="bg-white px-1 rounded border border-blue-200">meat / leaves</span>."</li>
+                                    <li>👉 "It lives in <span class="bg-white px-1 rounded border border-blue-200">the jungle</span>."</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- Step 3 -->
+                        <div class="bg-white text-gray-800 p-5 rounded-2xl shadow-lg border-b-4 border-green-500">
+                            <h4 class="font-bold text-green-700 text-xl mb-2 flex items-center gap-2"><span class="bg-green-100 p-1.5 rounded-lg text-lg">3</span> Deduction</h4>
+                            <p class="text-sm font-medium text-gray-600 mb-4 border-b pb-3">Give a big clue with a Modal (must/can't/might)!</p>
+                            <div class="bg-green-50 p-4 rounded-xl border border-green-100">
+                                <p class="text-sm font-bold text-green-800 mb-2">Use these phrases:</p>
+                                <ul class="text-[15px] space-y-2 font-semibold text-green-600">
+                                    <li>👉 "It <strong class="text-green-700 underline">must</strong> be <span class="bg-white px-1 rounded border border-green-200">dangerous</span>."</li>
+                                    <li>👉 "Because it has wings, it <strong class="text-green-700 underline">can't</strong> be <span class="bg-white px-1 rounded border border-green-200">a fish</span>."</li>
+                                    <li>👉 "It <strong class="text-green-700 underline">might</strong> be <span class="bg-white px-1 rounded border border-green-200">a reptile</span>."</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Teacher's Complete Example -->
+                <div class="bg-white text-gray-800 p-6 rounded-3xl font-medium text-lg shadow-xl relative mb-8">
+                    <span class="absolute -top-4 -right-4 text-4xl">📝</span>
+                    <h4 class="text-purple-700 font-bold mb-3">Teacher's Complete Example:</h4>
+                    <p class="italic text-gray-700 bg-gray-50 p-5 rounded-2xl border border-gray-200 shadow-inner">
+                        "My animal has <span class="text-orange-500 font-bold">green scales</span>, <span class="text-orange-500 font-bold">big webbed feet</span>, and <span class="text-orange-500 font-bold">sharp teeth</span>. It doesn't have <span class="text-orange-500 font-bold">fur</span>. It can <span class="text-blue-500 font-bold">swim very fast</span> and hide in rivers. Because it has scales and webbed feet, it <strong class="text-green-600 uppercase">must</strong> live in the water. It <strong class="text-green-600 uppercase">can't</strong> fly. It <strong class="text-green-600 uppercase">might</strong> be a crocodile!"
+                    </p>
+                </div>
+
+                <div class="bg-white/5 p-6 md:p-8 rounded-3xl border border-white/10 backdrop-blur-md mb-8">
+                    <h4 class="text-xl font-bold mb-4 flex items-center gap-2">🤖 1. The AI Guesser</h4>
+                    <p class="mb-4 text-purple-200 font-medium">Write your description below. The AI Teacher will check your grammar and try to guess what kind of animal you invented!</p>
+                    
+                    <textarea id="ai-input" rows="5" class="w-full p-5 rounded-2xl text-gray-800 text-xl font-medium outline-none placeholder-gray-400" placeholder="My animal has... It can... It must..."></textarea>
+                    
+                    <button onclick="aiCoachFeedback()" class="mt-5 bg-gradient-to-r from-pink-500 to-purple-500 text-white px-10 py-4 rounded-2xl font-bold text-xl hover:from-pink-600 hover:to-purple-600 shadow-2xl active:scale-95 transition-all w-full md:w-auto">Submit Description ✨</button>
+                    
+                    <div id="ai-response" class="mt-6 p-6 bg-white rounded-2xl hidden text-gray-800 border-l-8 border-purple-500 shadow-2xl">
+                        <p id="ai-text" class="font-bold text-xl leading-relaxed"></p>
+                    </div>
+                </div>
+
+                <!-- Drawing Dictation Instruction -->
+                <div class="bg-yellow-400 text-indigo-900 p-6 rounded-3xl shadow-xl">
+                    <h4 class="text-2xl font-bold mb-3 flex items-center gap-2"><span>🎨</span> 2. The Monster Drawing Dictation</h4>
+                    <p class="text-lg font-medium mb-3">Now, let's put your friends to the test!</p>
+                    <ul class="list-disc list-inside space-y-1 font-bold text-lg ml-2">
+                        <li><strong>Student A:</strong> Read your monster description aloud (slowly!).</li>
+                        <li><strong>Student B:</strong> Listen and draw the monster on the board (or paper).</li>
+                        <li><strong>Together:</strong> Compare the drawing to what the AI guessed!</li>
+                    </ul>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- WRAP-UP -->
+        <footer class="text-center pb-12 mt-10">
+            <div class="inline-block bg-white px-10 py-8 rounded-3xl shadow-xl border-4 border-orange-400 max-w-2xl mx-auto card-pop">
+                <h3 class="text-3xl text-orange-600 mb-4 font-bold">🚪 Exit Ticket</h3>
+                <p class="text-xl font-bold text-gray-700 mb-2">Tell your teacher before you leave:</p>
+                <p class="text-2xl font-bold text-indigo-700">"Name an animal that HAS SCALES and MUST live in the water!"</p>
+            </div>
+        </footer>
+
+    </main>
+
+    <!-- HOT SEAT MODAL -->
+    <div id="hot-seat-modal" class="fixed inset-0 bg-gray-900/90 z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white max-w-2xl w-full rounded-3xl p-8 md:p-12 text-center relative border-8 border-teal-500 shadow-2xl transform scale-95 transition-transform" id="hs-content">
+            <button onclick="closeHotSeat()" class="absolute top-4 right-6 text-gray-400 hover:text-red-500 text-4xl font-bold">&times;</button>
+            <h2 class="text-3xl font-bold text-gray-500 mb-2 uppercase tracking-wider">Secret Animal</h2>
+            <span id="hs-emoji" class="text-9xl block mb-4 drop-shadow-lg">🐶</span>
+            <h3 id="hs-name" class="text-5xl font-bold text-teal-700 mb-8 font-['Fredoka_One']">Name</h3>
+            
+            <div class="bg-gray-100 p-6 rounded-2xl border-2 border-gray-200">
+                <p class="text-xl font-bold text-gray-700 mb-4 uppercase">Shout these clues:</p>
+                <ul id="hs-clues" class="text-2xl font-bold text-teal-600 space-y-3">
+                    <li>Clue 1</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // --- PART 1: MEMORY GAME (Vocabulary) ---
+        const masterMemoryPairs = [
+            [{ id: 1, text: "Feathers", type: 'word' }, { id: 1, text: "🐦 Birds have these", type: 'def' }],
+            [{ id: 2, text: "Scales", type: 'word' }, { id: 2, text: "🐟 Fish & snakes have these", type: 'def' }],
+            [{ id: 3, text: "Pouch", type: 'word' }, { id: 3, text: "🦘 Kangaroos carry babies here", type: 'def' }],
+            [{ id: 4, text: "Claws", type: 'word' }, { id: 4, text: "🐻 Sharp nails on animals", type: 'def' }],
+            [{ id: 5, text: "Shell", type: 'word' }, { id: 5, text: "🐢 Hard back of a tortoise", type: 'def' }],
+            [{ id: 6, text: "Whiskers", type: 'word' }, { id: 6, text: "🐱 Long hairs on a cat's face", type: 'def' }],
+            [{ id: 7, text: "Webbed feet", type: 'word' }, { id: 7, text: "🦆 Ducks use these to swim", type: 'def' }],
+            [{ id: 8, text: "Spines", type: 'word' }, { id: 8, text: "🦔 Sharp spikes on a hedgehog", type: 'def' }],
+            [{ id: 9, text: "Antennae", type: 'word' }, { id: 9, text: "🐝 Bugs have these on heads", type: 'def' }],
+            [{ id: 10, text: "Flippers", type: 'word' }, { id: 10, text: "🦭 Seals use these to swim", type: 'def' }]
+        ];
+        const roundsConfig = [4, 6, 8, 10]; // Added a 4th round
+        let currentRoundIndex = 0, currentMemoryItems = [], flippedCards = [], matchedPairs = 0, isLocked = false, moves = 0;
+
+        function startMemoryRound(roundIndex) {
+            currentRoundIndex = roundIndex;
+            let shuffledPairs = [...masterMemoryPairs].sort(() => Math.random() - 0.5).slice(0, roundsConfig[currentRoundIndex]);
+            currentMemoryItems = [];
+            shuffledPairs.forEach(pair => currentMemoryItems.push(pair[0], pair[1]));
+            initMemoryGame();
+        }
+
+        function initMemoryGame() {
+            const grid = document.getElementById('memory-grid');
+            if (!grid) return; 
+            
+            grid.innerHTML = '';
+            flippedCards = []; matchedPairs = 0; moves = 0; isLocked = false;
+            
+            // Adjust grid columns based on items length
+            grid.className = currentMemoryItems.length > 12 ? "grid grid-cols-4 md:grid-cols-5 gap-3 md:gap-4 max-w-3xl mx-auto" : "grid grid-cols-4 gap-3 md:gap-4 max-w-2xl mx-auto";
+
+            const nextBtn = document.getElementById('memory-next-btn');
+            if (nextBtn) nextBtn.classList.add('hidden');
+            
+            const memoryMsg = document.getElementById('memory-message');
+            if (memoryMsg) memoryMsg.innerHTML = `Level ${currentRoundIndex + 1} - Moves: <span id="move-count">0</span>`;
+            
+            [...currentMemoryItems].sort(() => Math.random() - 0.5).forEach((item) => {
+                const card = document.createElement('div');
+                card.className = 'memory-card';
+                card.dataset.id = item.id;
+                card.innerHTML = `<div class="memory-card-inner"><div class="memory-card-front text-4xl">❔</div><div class="memory-card-back text-sm md:text-base">${item.text}</div></div>`;
+                card.addEventListener('click', () => {
+                    if (isLocked || card.classList.contains('is-flipped')) return;
+                    card.classList.add('is-flipped');
+                    flippedCards.push(card);
+                    if (flippedCards.length === 2) {
+                        moves++; 
+                        const moveCountEl = document.getElementById('move-count');
+                        if (moveCountEl) moveCountEl.innerText = moves; 
+                        
+                        isLocked = true;
+                        if (flippedCards[0].dataset.id === flippedCards[1].dataset.id) {
+                            flippedCards.forEach(c => c.classList.add('matched'));
+                            matchedPairs++; flippedCards = []; isLocked = false;
+                            if (matchedPairs === currentMemoryItems.length / 2) {
+                                if (memoryMsg) memoryMsg.innerHTML = "🎉 Round Clear!";
+                                if (nextBtn) nextBtn.classList.toggle('hidden', currentRoundIndex === roundsConfig.length - 1);
+                                if (currentRoundIndex === roundsConfig.length - 1 && memoryMsg) memoryMsg.innerHTML = "🏆 You beat all levels!";
+                            }
+                        } else {
+                            setTimeout(() => { flippedCards.forEach(c => c.classList.remove('is-flipped')); flippedCards = []; isLocked = false; }, 1000);
+                        }
+                    }
+                });
+                grid.appendChild(card);
+            });
+        }
+        function nextMemoryRound() { if (currentRoundIndex < roundsConfig.length - 1) startMemoryRound(currentRoundIndex + 1); }
+        function resetMemoryGame() { startMemoryRound(0); }
+
+        // --- PART 1: "WHO AM I?" QUIZ ---
+        const waiData = [
+            { speaker: "Arlo", clue: "I have a pouch, grey fur, and I sleep a lot in trees.", options: ["Lion", "Koala", "Kangaroo"], answer: 1 },
+            { speaker: "Ting", clue: "I have no feet, but I have flippers and whiskers. I swim well.", options: ["Seal", "Shark", "Fish"], answer: 0 },
+            { speaker: "Lara", clue: "I live in the park. I have a beak, webbed feet, and a green head.", options: ["Eagle", "Parrot", "Duck"], answer: 2 },
+            { speaker: "Bobby", clue: "I am very small. I have six legs, wings, and antennae.", options: ["Bee", "Spider", "Hedgehog"], answer: 0 },
+            { speaker: "Magazine", clue: "It has scales and a long tongue. It is not a snake.", options: ["Lizard", "Crocodile", "Fish"], answer: 0 }
+        ];
+        let waiIdx = 0, waiScore = 0, waiActive = false;
+
+        function startWAI() {
+            waiIdx = 0; waiScore = 0; waiActive = true;
+            document.getElementById('wai-start-btn').classList.add('hidden');
+            document.getElementById('wai-score').classList.remove('hidden');
+            document.getElementById('wai-options').classList.remove('hidden');
+            document.getElementById('wai-score').innerText = `Score: 0`;
+            loadWAI();
+        }
+
+        function loadWAI() {
+            if(waiIdx >= waiData.length) {
+                document.getElementById('wai-speaker').innerText = "Game Over!";
+                document.getElementById('wai-clue').innerText = `Final Score: ${waiScore} / ${waiData.length}`;
+                document.getElementById('wai-options').classList.add('hidden');
+                document.getElementById('wai-start-btn').classList.remove('hidden');
+                document.getElementById('wai-start-btn').innerText = "Play Again";
+                waiActive = false;
+                return;
+            }
+            
+            const q = waiData[waiIdx];
+            document.getElementById('wai-speaker').innerText = `Question ${waiIdx + 1}: ${q.speaker} says...`;
+            document.getElementById('wai-clue').innerText = `"${q.clue}"`;
+            
+            const btns = document.querySelectorAll('.wai-btn');
+            btns.forEach((btn, i) => {
+                btn.innerText = q.options[i];
+                btn.className = "wai-btn w-full bg-indigo-50 hover:bg-indigo-100 border-2 border-indigo-200 rounded-xl p-3 font-bold text-xl transition-colors";
+                btn.disabled = false;
+            });
+        }
+
+        function checkWAI(choiceIdx) {
+            if(!waiActive) return;
+            const btns = document.querySelectorAll('.wai-btn');
+            btns.forEach(b => b.disabled = true);
+            
+            const correctIdx = waiData[waiIdx].answer;
+            if(choiceIdx === correctIdx) {
+                btns[choiceIdx].classList.replace('bg-indigo-50', 'bg-green-100');
+                btns[choiceIdx].classList.replace('border-indigo-200', 'border-green-500');
+                waiScore++;
+            } else {
+                btns[choiceIdx].classList.replace('bg-indigo-50', 'bg-red-100');
+                btns[choiceIdx].classList.replace('border-indigo-200', 'border-red-500');
+                btns[correctIdx].classList.replace('bg-indigo-50', 'bg-green-100');
+                btns[correctIdx].classList.replace('border-indigo-200', 'border-green-500');
+            }
+            
+            document.getElementById('wai-score').innerText = `Score: ${waiScore}`;
+            setTimeout(() => { waiIdx++; loadWAI(); }, 1500);
+        }
+
+        // --- PART 2: DIALOGUE DETECTIVE ---
+        function checkDetective(btn, isCorrect) {
+            const container = btn.parentElement;
+            Array.from(container.children).forEach(b => {
+                b.className = "bg-gray-100 text-gray-400 px-4 py-2 rounded-lg font-bold";
+                b.disabled = true;
+            });
+            if(isCorrect) {
+                btn.className = "bg-green-500 text-white px-4 py-2 rounded-lg font-bold shadow-lg scale-110 transition-transform";
+            } else {
+                btn.className = "bg-red-500 text-white px-4 py-2 rounded-lg font-bold shadow-lg scale-95 transition-transform";
+                // find correct and highlight it
+                Array.from(container.children).forEach(b => {
+                    if (b.getAttribute('onclick').includes('true')) {
+                        b.className = "bg-green-500 text-white px-4 py-2 rounded-lg font-bold shadow-lg";
+                    }
+                });
+            }
+        }
+
+        // --- GRAMMAR UTILS ---
+        function checkBasic(sel, ans) { 
+            const icon = sel.nextElementSibling;
+            if (icon) icon.classList.remove('hidden');
+            if (sel.value === ans) {
+                if (icon) icon.innerText = "✅"; 
+                sel.className = "w-full bg-green-50 border-2 border-green-500 rounded-lg p-2 font-bold outline-none text-green-800";
+            } else if (sel.value !== "") {
+                if (icon) icon.innerText = "❌"; 
+                sel.className = "w-full bg-red-50 border-2 border-red-500 rounded-lg p-2 font-bold outline-none text-red-800";
+            } else {
+                if (icon) icon.classList.add('hidden'); 
+                sel.className = "w-full bg-gray-800 border-2 border-gray-500 rounded-lg p-2 font-bold outline-none text-white cursor-pointer";
+            }
+        }
+        function checkRW(btn, ok) { 
+            const parent = btn.parentElement;
+            Array.from(parent.children).forEach(b => b.className = "px-4 py-1.5 bg-white border border-gray-300 rounded font-bold");
+            btn.className = ok ? "px-4 py-1.5 bg-green-500 text-white rounded font-bold shadow" : "px-4 py-1.5 bg-red-500 text-white rounded font-bold shadow";
+        }
+
+        // --- MYSTERY BOX GAME ---
+        const boxData = [
+            { clue: '"It has feathers, wings, and a beak."', correct: 0, ops: ["A) It must be a bird.", "B) It could be a dog.", "C) It can't be a bird."] },
+            { clue: '"It has scales, sharp teeth, and no legs."', correct: 1, ops: ["A) It must be a bear.", "B) It could be a snake or crocodile.", "C) It can't be a reptile."] },
+            { clue: '"It has fur and a pouch."', correct: 0, ops: ["A) It must be a kangaroo or koala.", "B) It can't have fur.", "C) It could be a fish."] },
+            { clue: '"It is very small, green, and croaks."', correct: 1, ops: ["A) It must be a lion.", "B) It must be a frog.", "C) It can't be a frog."] },
+            { clue: '"It has spines and small paws."', correct: 2, ops: ["A) It can't be a hedgehog.", "B) It might be a snake.", "C) It must be a hedgehog."] },
+            { clue: '"It lives in the house, has fur and whiskers."', correct: 1, ops: ["A) It must be a turtle.", "B) It might be a cat.", "C) It can't be a cat."] }
+        ];
+        let boxIdx = 0, boxScore = 0;
+
+        function loadBox() {
+            const clueEl = document.getElementById('box-clue');
+            if (!clueEl) return;
+            
+            if (boxIdx >= boxData.length) {
+                clueEl.innerText = `Game Over! Score: ${boxScore}/${boxData.length}`;
+                const btns = document.querySelectorAll('.box-btn');
+                btns.forEach(b => b.style.display = 'none');
+                return;
+            }
+            const data = boxData[boxIdx];
+            clueEl.innerText = data.clue;
+            const btns = document.querySelectorAll('.box-btn');
+            btns.forEach((b, i) => {
+                b.innerText = data.ops[i];
+                b.className = "box-btn w-full bg-gray-100 hover:bg-blue-50 border-2 border-gray-200 rounded-xl p-3 font-bold text-lg text-left transition-colors";
+                b.disabled = false;
+            });
+        }
+
+        function checkBox(btn, dummyValue) {
+            const btns = document.querySelectorAll('.box-btn');
+            const clickedIdx = Array.from(btns).indexOf(btn);
+            const correctIdx = boxData[boxIdx].correct;
+
+            btns.forEach(b => b.disabled = true);
+
+            if (clickedIdx === correctIdx) {
+                btn.classList.replace('bg-gray-100', 'bg-green-100');
+                btn.classList.replace('border-gray-200', 'border-green-500');
+                boxScore++;
+            } else {
+                btn.classList.replace('bg-gray-100', 'bg-red-100');
+                btn.classList.replace('border-gray-200', 'border-red-500');
+                btns[correctIdx].classList.replace('bg-gray-100', 'bg-green-100');
+                btns[correctIdx].classList.replace('border-gray-200', 'border-green-500');
+            }
+            const scoreEl = document.getElementById('box-score');
+            if (scoreEl) scoreEl.innerText = `Score: ${boxScore}/6`;
+        }
+
+        function nextBoxClue() {
+            if (boxIdx < boxData.length) boxIdx++;
+            loadBox();
+        }
+
+        // --- HOT SEAT MODAL LOGIC ---
+        function openHotSeat(name, emoji, clues) {
+            const modal = document.getElementById('hot-seat-modal');
+            const content = document.getElementById('hs-content');
+            
+            document.getElementById('hs-emoji').innerText = emoji;
+            document.getElementById('hs-name').innerText = name;
+            
+            const cluesList = document.getElementById('hs-clues');
+            cluesList.innerHTML = '';
+            clues.forEach(clue => {
+                const li = document.createElement('li');
+                li.innerText = `👉 ${clue}`;
+                cluesList.appendChild(li);
+            });
+
+            modal.classList.remove('hidden');
+            // small delay to allow display:block to apply before scaling for animation
+            setTimeout(() => {
+                content.classList.replace('scale-95', 'scale-100');
+            }, 10);
+        }
+
+        function closeHotSeat() {
+            const modal = document.getElementById('hot-seat-modal');
+            const content = document.getElementById('hs-content');
+            
+            content.classList.replace('scale-100', 'scale-95');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 200); // match transition duration
+        }
+
+        // --- AI COACH ---
+        const apiKey = "";
+        async function aiCoachFeedback() {
+            const inputEl = document.getElementById('ai-input');
+            const resDiv = document.getElementById('ai-response');
+            const resTxt = document.getElementById('ai-text');
+            const btn = document.querySelector('button[onclick="aiCoachFeedback()"]');
+            
+            if (!inputEl || !resDiv || !resTxt || !btn) return;
+            
+            const input = inputEl.value.trim();
+            if (!input) {
+                alert("Please describe your creature first!");
+                return;
+            }
+            
+            btn.disabled = true;
+            btn.innerText = "🤖 Analyzing...";
+            
+            resDiv.classList.remove('hidden'); 
+            resDiv.className = "mt-6 p-6 bg-white rounded-2xl shadow-2xl text-gray-800 border-l-8 border-purple-400 block animate-pulse";
+            resTxt.innerHTML = "Thinking... Analyzing your animal description! 🧬";
+            
+            try {
+                const prompt = `You are a friendly, enthusiastic English teacher for 10-12 year old kids (A2 level). 
+                The student has invented a mystery animal and described it. 
+                Read their description: "${input}"
+                
+                Task:
+                1. Point out if they successfully used animal body part vocabulary (wings, scales, fur, etc.).
+                2. Point out if they used a modal of deduction (must, might, could, can't, may). Gently correct grammar if there is a big mistake.
+                3. Most importantly: Take a fun, creative guess at what this animal could be! E.g. "It sounds like a Dragon!" or "Is it a flying shark?"
+                
+                Keep the tone very simple, fun, and encouraging (max 3-4 short sentences). No markdown.`;
+
+                const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`, {
+                    method: 'POST', headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }] })
+                });
+                const data = await response.json();
+                resTxt.innerHTML = data.candidates[0].content.parts[0].text;
+                resDiv.className = "mt-6 p-6 bg-white rounded-2xl shadow-2xl text-gray-800 border-l-8 border-purple-500 block";
+            } catch (e) { 
+                resTxt.innerHTML = "Wow, your creature sounds amazing! You used great vocabulary. It must be some kind of magic dragon!"; 
+                resDiv.className = "mt-6 p-6 bg-white rounded-2xl shadow-2xl text-gray-800 border-l-8 border-green-500 block"; 
+            } finally {
+                btn.disabled = false;
+                btn.innerText = "Submit Description ✨";
+                resDiv.classList.remove('animate-pulse');
+            }
+        }
+        
+        // --- SAFE INITIALIZATION ---
+        function initApp() {
+            if (document.getElementById('memory-grid')) {
+                startMemoryRound(0);
+            }
+            if (document.getElementById('box-clue')) {
+                loadBox();
+            }
+            if (document.getElementById('wai-speaker')) {
+                // Initial wait state for WAI quiz
+            }
+        }
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initApp);
+        } else {
+            initApp();
+        }
+
+    </script>
+</body>
+</html>
